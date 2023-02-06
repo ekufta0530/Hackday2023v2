@@ -33,5 +33,5 @@ change severity or add case for tagged amis.
 Create pull request
 
 add secrets to repo/ setup github actions
+removed
 
-added
