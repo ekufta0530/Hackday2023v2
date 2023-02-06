@@ -14,8 +14,6 @@ https://docs.datadoghq.com/agent/guide/how-to-import-datadog-resources-into-terr
 Setup Terraform cloud
 https://developer.hashicorp.com/terraform/tutorials/automation/github-actions
 
-API 6DP0LLHdvjbmrg.atlasv1.JyPeaucyDznKNZRDsfRBWlpHRazHF8paGYaBPGuyz3o3bcaUfAqqEUTjvz1BmIxnyz8
-
 
 Update rule through IDE, github actions performing terraform apply
 Easy to do since terraform is a supported tool on ubuntu 22 runners https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
