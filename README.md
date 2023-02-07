@@ -1,37 +1,25 @@
 # Hackday2023
-Using Github actions and terraform to deploy security rules and track changes across UI and api
+Use Github actions and terraform to test + deploy Datadog Cloud SIEM security rules. 
 
-## GOAL
 
-Be able to update, create and get state of datadog rules in terraform adding this here
-
-## step 1
-Get all rules with terraformer
-https://docs.datadoghq.com/agent/guide/how-to-import-datadog-resources-into-terraform/#overview
+## Importing Rules
+I began by importing some rules using terraformer according to [this guide](https://docs.datadoghq.com/agent/guide/how-to-import-datadog-resources-into-terraform/#overview). The following command worked once terraformer was installed.
 `terraformer import datadog --resources=security_monitoring_rule --api-key=$DD_API_KEY --app-key=$DD_APP_KEY`
 
-# step 2
-Setup Terraform cloud
-https://developer.hashicorp.com/terraform/tutorials/automation/github-actions
+# Terraform Cloud
+I chose to use terraform cloud to remotely run the terraform commands (i.e. plan, apply, fmt, etc). Alternatively, I could have used the Github actions runners or ran them on a self hosted runner.
 
-
+# Architecture
+![architecture](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fterraform%2Fautomation%2Ftfc-gh-actions-workflow.png)
 Update rule through IDE, github actions performing terraform apply
-Easy to do since terraform is a supported tool on ubuntu 22 runners https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
 
-# Extra - use OPA to require rules be tagged with attack technique, tactic and number
-https://blog.gruntwork.io/terraform-up-running-3rd-edition-is-now-published-4b99804d922a
-https://www.openpolicyagent.org/docs/latest/terraform/
+<ol>
+    <li> Rule is updated in .tf file (cloudtrail_rules.tf in this example)
+    <li> Editer creates new pull request 
+    <li> Github actions follow script to output result of `terraform plan` in PR
+    <li> Upon approval and push, `terraform apply` github actions script applies the changes/ additional of sec rules
+</ol>
 
-Ideal workflow is to create rule in one dd account, run atomic/ stratus test on it, if succeeds then is created in prod account. 
+# Use Cases
 
-### Guide text
-
-Move to a feature branch to create changes to the cloudtrailrules.tf
-
-change severity or add case for tagged amis.
-
-Create pull request
-
-add secrets to repo/ setup github actions
-removedffff
-
+An additional github action job/step could be implemented to kick off stratus read team, atmoic red team or other pen test tools to automatically test the applied rule. This would need to be done after `terraform apply` so it would be necessary to run this in a datadog account dedicated to staging/ testing. 
