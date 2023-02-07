@@ -1,7 +1,6 @@
 # Hackday2023
 Use Github actions and terraform to test + deploy Datadog Cloud SIEM security rules. 
 
-
 ## Importing Rules
 I began by importing some rules using terraformer according to [this guide](https://docs.datadoghq.com/agent/guide/how-to-import-datadog-resources-into-terraform/#overview). The following command worked once terraformer was installed.
 `terraformer import datadog --resources=security_monitoring_rule --api-key=$DD_API_KEY --app-key=$DD_APP_KEY`
@@ -11,13 +10,12 @@ I chose to use terraform cloud to remotely run the terraform commands (i.e. plan
 
 # Architecture
 ![architecture](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fterraform%2Fautomation%2Ftfc-gh-actions-workflow.png)
-Update rule through IDE, github actions performing terraform apply
 
 <ol>
-    <li> Rule is updated in .tf file (cloudtrail_rules.tf in this example)
-    <li> Editer creates new pull request 
+    <li> Rule is updated locally in .tf file or in Github web console (`cloudtrail_rules.tf` in this example)
+    <li> Editer creates new pull request
     <li> Github actions follow script to output result of `terraform plan` in PR
-    <li> Upon approval and push, `terraform apply` github actions script applies the changes/ additional of sec rules
+    <li> Upon approval and push, `terraform apply` github actions script applies the changes or addition of sec rules
 </ol>
 
 # Use Cases
