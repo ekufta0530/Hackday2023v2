@@ -17,7 +17,8 @@ I chose to use terraform cloud to remotely run the terraform commands (i.e. plan
     <li> Github actions follow script to output result of `terraform plan` in PR
     <li> Upon approval and push, `terraform apply` github actions script applies the changes or addition of sec rules
 </ol>
+*An editor could still push directly to the main branch to kick off the `terrafrom apply`*
 
 ## Use Cases + Future Development
 
-An additional github action job/step could be implemented to kick off Stratus Red Team, Atomic Red Team or other pen test tools to automatically test the applied rule. This would need to be done after `terraform apply` so it would be necessary to run this in a datadog account dedicated to staging/ testing. 
+An additional github action job/step could be implemented to kick off Stratus Red Team, Atomic Red Team or other pen test tools to automatically test the applied rule. This would need to be done after `terraform apply` so it would be necessary to run this in a datadog account dedicated to staging/ testing.
