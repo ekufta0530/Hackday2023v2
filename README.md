@@ -17,7 +17,7 @@ I chose to use terraform cloud to remotely run the terraform commands (i.e. plan
     <li> Github actions follow script to output result of `terraform plan` in PR
     <li> Upon approval and push, `terraform apply` github actions script applies the changes or addition of sec rules
 </ol>
-*An editor could still push directly to the main branch to kick off the `terrafrom apply`*
+*An editor could still push directly to the main branch to kick off the terrafrom apply job*
 
 ## Use Cases + Future Development
 
