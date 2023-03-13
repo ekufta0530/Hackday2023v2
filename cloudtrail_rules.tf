@@ -12,7 +12,7 @@ resource "datadog_security_monitoring_rule" "security_monitoring_rule_mzb-tso-nj
   options {
     decrease_criticality_based_on_env = "true"
     detection_method                  = "threshold"
-    evaluation_window                 = "300"
+    evaluation_window                 = "350"
     keep_alive                        = "3600"
     max_signal_duration               = "3600"
   }
