@@ -1,7 +1,7 @@
 resource "datadog_security_monitoring_rule" "security_monitoring_rule_mzb-tso-njf" {
   case {
     condition = "a > 1"
-    status    = "high"
+    status    = "low"
   }
 
   enabled            = "true"
